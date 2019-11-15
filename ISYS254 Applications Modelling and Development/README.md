@@ -5,5 +5,6 @@ This unit is an intermediate unit to deliver a solid foundation in concepts, met
 
 
 ### Assignments 
-- Assignment 1 Excel (Spreadsheets): Result: 98.00%	
-- Assignment 2 Access (Databases): Result: 97.00%	
+- Assignment 1 Analysis Modelling: Result: 77.00%	
+- Assignment 2 Part 1 Applications Modelling Design: Result: 90.00%	
+- Assignment 2 Part 2 Applications Modelling and Development - Design: Result: 85.00%
