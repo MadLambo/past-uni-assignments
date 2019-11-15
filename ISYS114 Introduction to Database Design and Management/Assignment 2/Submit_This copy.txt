@@ -1,0 +1,83 @@
+
+/******* TASK 1: INSERT YOUR CODE TO CREATE THE FOUR TABLES HERE (PUT THEM IN THE CORRECT ORDER OF EXECUTION) ***********/
+
+ 
+
+
+
+
+/******* TASK 2: INSERT YOUR CODE TO POPULATE THE DATA FOR THE FOUR TABLES HERE  (PUT THEM IN THE CORRECT ORDER OF EXECUTION) ***********/
+
+
+
+
+
+/******* TASK 3: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+
+/******* TASK 4: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+
+/******* TASK 5: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+
+/******* TASK 6: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 7: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+
+/******* TASK 8: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 9: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 10: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 11: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 12: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 13: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+
+/******* TASK 14: INSERT YOUR QUERY HERE ***********/
+
+
+
+
+/******* TASK 15: INSERT YOUR QUERY HERE ***********/
+
+
+
