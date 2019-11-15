@@ -1,0 +1,188 @@
+/*** Drop all tables ***/
+
+drop table if exists staffongrade cascade;
+drop table if exists workson cascade;
+drop table if exists salarygrade cascade;
+drop table if exists invoice cascade;
+drop table if exists campaign cascade;
+drop table if exists customer cascade;
+drop table if exists staff cascade;
+drop table if exists alerts cascade;
+
+/***** Create all tables ***/
+
+-- -----------------------------------------------------
+-- Table `staff`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `staff` (
+  `STAFFNO` INT(11) NOT NULL,
+  `STAFFNAME` VARCHAR(20) NULL DEFAULT NULL,
+  `EXPERTISE` VARCHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`STAFFNO`));
+
+insert into `staff`(`STAFFNO`, `STAFFNAME`, `EXPERTISE`)value
+('1', 'John', 'MARKETING'),
+('3', 'Adam', 'ACCOUNTING'),
+('5', 'Eve', 'FINANCE');
+
+CREATE TABLE IF NOT EXISTS `customer` (
+  `CUSTOMER_ID` INT(11) NOT NULL,
+  `COMPANYNAME` VARCHAR(45) NOT NULL,
+  `ADDRESS` VARCHAR(30) NULL DEFAULT NULL,
+  `STAFF_STAFFNO` INT(11) NOT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`),
+  INDEX `fk_CUSTOMER_STAFF1_idx` (`STAFF_STAFFNO` ASC),
+  CONSTRAINT `fk_CUSTOMER_STAFF1`
+    FOREIGN KEY (`STAFF_STAFFNO`)
+    REFERENCES `staff` (`STAFFNO`));
+    
+INSERT INTO `customer` (`CUSTOMER_ID`, `COMPANYNAME`, `ADDRESS`,   `STAFF_STAFFNO`) 
+	VALUES ('1', 'MQ', 'N Ryde',  '3');
+INSERT INTO `customer` (`CUSTOMER_ID`, `COMPANYNAME`, `ADDRESS`,  `STAFF_STAFFNO`) 
+	VALUES ('3', 'UWS', 'Parramatta',  '1');
+    
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `campaign` (
+  `CAMPAIGN_NO` INT(11) NOT NULL,
+  `TITLE` VARCHAR(30) NOT NULL,
+  `CUSTOMER_ID` INT(11) NOT NULL,
+  `THEME` VARCHAR(40) NULL DEFAULT NULL,
+  `CAMPAIGNSTARTDATE` DATE NULL DEFAULT NULL,
+  `CAMPAIGNFINISHDATE` DATE NULL DEFAULT NULL,
+  `ESTIMATEDCOST` INT(11) NULL DEFAULT NULL,
+  `ACTUALCOST` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`CAMPAIGN_NO`),
+  INDEX `OWNS_FK` (`CUSTOMER_ID` ASC),
+  CONSTRAINT `FK_CAMPAIGN_OWNS_CUSTOMER`
+    FOREIGN KEY (`CUSTOMER_ID`)
+    REFERENCES `customer` (`CUSTOMER_ID`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT);
+
+INSERT INTO `campaign` (`CAMPAIGN_NO`, `TITLE`, `CUSTOMER_ID`, `THEME`, `CAMPAIGNSTARTDATE`, `CAMPAIGNFINISHDATE`, `ESTIMATEDCOST`, `ACTUALCOST`) 
+    VALUES ('1', 'Blue', '1', 'Fall', '2018-01-01', '2019-07-01', '1500', '1350');
+
+INSERT INTO `campaign` (`CAMPAIGN_NO`, `TITLE`, `CUSTOMER_ID`, `THEME`, `CAMPAIGNSTARTDATE`, `ESTIMATEDCOST`) 
+    VALUES ('2', 'Red', '3', 'Spring', '2019-01-03', '1000');
+    
+CREATE TABLE IF NOT EXISTS `invoice` (
+  `INVOICENO` INT(11) NOT NULL AUTO_INCREMENT,
+  `CAMPAIGN_NO` INT(11) NOT NULL,
+  `DATEISSUED` DATE NULL DEFAULT NULL,
+  `DATEPAID` DATE NULL DEFAULT NULL,
+  `BALANCEOWING` INT(11) NULL DEFAULT NULL,
+  `STATUS` VARCHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`INVOICENO`, `CAMPAIGN_NO`),
+  INDEX `FK_INVOICE_SENDS2_CAMPAIGN_idx` (`CAMPAIGN_NO` ASC),
+  CONSTRAINT `FK_INVOICE_SENDS2_CAMPAIGN`
+    FOREIGN KEY (`CAMPAIGN_NO`)
+    REFERENCES `campaign` (`CAMPAIGN_NO`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+AUTO_INCREMENT = 6;
+
+INSERT INTO `invoice` (`INVOICENO`, `CAMPAIGN_NO`, `DATEISSUED`, `DATEPAID`, `BALANCEOWING`, `STATUS`) 
+    VALUES ('1', '1', '2019-07-19',  '2019-07-31', '0', 'PAID');
+
+INSERT INTO `invoice` (`INVOICENO`, `CAMPAIGN_NO`, `DATEISSUED`, `BALANCEOWING`, `STATUS`) 
+    VALUES ('2', '2', '2019-09-10', '675', 'UNPAID');
+    
+-- -----------------------------------------------------
+-- Table `salarygrade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `salarygrade` (
+  `GRADE` INT(11) NOT NULL,
+  `HOURLYRATE` FLOAT NOT NULL,
+  PRIMARY KEY (`GRADE`));
+
+INSERT INTO `salarygrade` (`GRADE`, `HOURLYRATE`) VALUES ('1', '30');
+INSERT INTO `salarygrade` (`GRADE`, `HOURLYRATE`) VALUES ('2', '45');
+INSERT INTO `salarygrade` (`GRADE`, `HOURLYRATE`) VALUES ('3', '70');
+INSERT INTO `salarygrade` (`GRADE`, `HOURLYRATE`) VALUES ('4', '75');
+INSERT INTO `salarygrade` (`GRADE`, `HOURLYRATE`) VALUES ('5', '150');
+
+CREATE TABLE IF NOT EXISTS `staffongrade` (
+  `STAFFNO` INT(11) NOT NULL,
+  `GRADE` INT(11) NOT NULL,
+  `STARTDATE` DATE NULL DEFAULT NULL,
+  `FINISHDATE` DATE NULL DEFAULT NULL,
+  INDEX `STAFFONGRADE_FK` (`STAFFNO` ASC),
+  INDEX `STAFFONGRADE2_FK` (`GRADE` ASC),
+  PRIMARY KEY (`GRADE`, `STAFFNO`),
+  CONSTRAINT `FK_STAFFONG_STAFFONGR_SALARYGR`
+    FOREIGN KEY (`GRADE`)
+    REFERENCES `salarygrade` (`GRADE`),
+  CONSTRAINT `FK_STAFFONG_STAFFONGR_STAFF`
+    FOREIGN KEY (`STAFFNO`)
+    REFERENCES `staff` (`STAFFNO`));
+    
+INSERT INTO `staffongrade` (`STAFFNO`, `GRADE`, `STARTDATE`, `FINISHDATE`) 
+    VALUES ('1', '1', '2018-01-01','2019-01-04');
+INSERT INTO `staffongrade` (`STAFFNO`, `GRADE`, `STARTDATE`, `FINISHDATE`) 
+    VALUES ('3', '2', '2018-01-05','2018-12-31');
+INSERT INTO `staffongrade` (`STAFFNO`, `GRADE`, `STARTDATE`, `FINISHDATE`) 
+    VALUES ('5', '4', '2018-01-01', '2019-06-01');    
+INSERT INTO `staffongrade` (`STAFFNO`, `GRADE`, `STARTDATE`) 
+    VALUES ('1', '2', '2019-01-05');
+INSERT INTO `staffongrade` (`STAFFNO`, `GRADE`, `STARTDATE`) 
+    VALUES ('3', '3', '2019-01-01');
+    
+CREATE TABLE IF NOT EXISTS `staffongrade` (
+  `STAFFNO` INT(11) NOT NULL,
+  `GRADE` INT(11) NOT NULL,
+  `STARTDATE` DATE NULL DEFAULT NULL,
+  `FINISHDATE` DATE NULL DEFAULT NULL,
+  INDEX `STAFFONGRADE_FK` (`STAFFNO` ASC),
+  INDEX `STAFFONGRADE2_FK` (`GRADE` ASC),
+  PRIMARY KEY (`GRADE`, `STAFFNO`),
+  CONSTRAINT `FK_STAFFONG_STAFFONGR_SALARYGR`
+    FOREIGN KEY (`GRADE`)
+    REFERENCES `salarygrade` (`GRADE`),
+  CONSTRAINT `FK_STAFFONG_STAFFONGR_STAFF`
+    FOREIGN KEY (`STAFFNO`)
+    REFERENCES `staff` (`STAFFNO`));
+
+
+-- -----------------------------------------------------
+-- Table `workson`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `workson` (
+  `STAFFNO` INT(11) NOT NULL,
+  `CAMPAIGN_NO` INT(11) NOT NULL,
+  `WDATE` DATE NOT NULL,
+  `HOUR` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`),
+  INDEX `WORKSON_FK` (`STAFFNO` ASC),
+  INDEX `FK_WORKSON_WORKSON2_CAMPAIGN_idx` (`CAMPAIGN_NO` ASC),
+  CONSTRAINT `FK_WORKSON_WORKSON2_CAMPAIGN`
+    FOREIGN KEY (`CAMPAIGN_NO`)
+    REFERENCES `campaign` (`CAMPAIGN_NO`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `FK_WORKSON_WORKSON_STAFF`
+    FOREIGN KEY (`STAFFNO`)
+    REFERENCES `staff` (`STAFFNO`));
+    
+INSERT INTO `workson` (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`,  `HOUR`) 
+    VALUES ('1', '2', '2019-02-01',  '8');
+    
+INSERT INTO `workson` (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`,  `HOUR`) 
+    VALUES ('5', '1', '2018-02-01',  '7');
+    
+INSERT INTO `workson` (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`,  `HOUR`) 
+    VALUES ('3', '1', '2018-05-01',  '5');
+
+INSERT INTO `workson` (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`,  `HOUR`) 
+    VALUES ('1', '2', '2019-05-01',  '7');
+
+INSERT INTO `workson` (`STAFFNO`, `CAMPAIGN_NO`, `WDATE`,  `HOUR`) 
+    VALUES ('5', '1', '2019-06-01',  '8');
+
+create table alerts(
+message_no int primary key AUTO_INCREMENT,
+message_date date,
+origin varchar(25),
+message varchar(250)
+);
+
+

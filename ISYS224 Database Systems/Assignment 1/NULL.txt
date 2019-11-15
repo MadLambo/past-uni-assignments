@@ -1,0 +1,126 @@
+/*
+*********************************************************************
+Title: ISYS224 Assignment 1
+Name: Justin Lam
+SID: 45197083
+*********************************************************************
+*/
+
+
+DROP TABLE IF EXISTS `supervisor`,`staff`,`client`, `campaign`, `studio`, `advert`, `invoice`, `salary`, `staff_works_campaign`;
+
+CREATE TABLE `supervisor`(
+ `supervisorid` varchar(8),
+ `ismanager` boolean,
+PRIMARY KEY (`supervisorid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `supervisor`(`supervisorid`, `ismanager`)value
+
+
+
+
+CREATE TABLE `staff` (
+  `staffid` varchar(10) NOT NULL,
+  `staff_firstname` varchar(30) NOT NULL,
+  `staff_lastname` varchar(30) NOT NULL,
+  `staff_gender` varchar(8) NOT NULL,
+  `staff_dob` date NOT NULL,
+  `staff_email` varchar(100) NOT NULL,
+  `staff_phonenumber` int NOT NULL,
+  `staff_position` varchar(30) NOT NULL,
+  `staff_status` varchar(30) NOT NULL,
+  `supervisor_id` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`staffid`),
+  CONSTRAINT fk_supervisorstaff FOREIGN KEY (`supervisor_id`) REFERENCES supervisor(`supervisorid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+/*Data for the table `staff` */
+
+insert  into `staff`(`staffid`,`staff_firstname`,`staff_lastname`,`staff_gender`,`staff_dob`,`staff_email`,`staff_phonenumber`, `staff_position`, `staff_status`,`supervisor_id`) values 
+
+CREATE TABLE `client` (
+  `clientid` varchar(8) NOT NULL,
+  `clientname` varchar(30) NOT NULL,
+  `client_phonenumber` varchar(10) NOT NULL,
+  `client_emailaddress` varchar(100) NOT NULL,
+  `client_address` varchar(200) NOT NULL,
+  `staff_responsible` varchar(10) NOT NULL,
+  PRIMARY KEY (`clientid`),
+  CONSTRAINT fk_clientcustomer FOREIGN KEY (staff_responsible) REFERENCES staff(staffid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `client` */
+
+
+insert  into `client`(`clientid`,`clientname`,`client_phonenumber`,`client_emailaddress`,`client_address`,`staff_responsible`)values
+
+
+CREATE TABLE `campaign` (
+  `campaignid` varchar(8) NOT NULL,
+  `campaignname` varchar(50) NOT NULL,
+  `campaigntheme` varchar(30) NOT NULL,
+  `campaigne_estimatedcost` int NOT NULL,
+  `campaigne_actualcost` int NOT NULL,
+  `campaign_startdate` date NOT NULL,
+  `campaign_estimate_end_date` date NOT NULL,
+  `campaign_actual_end_date` date NOT NULL,
+  `campaign_client` varchar(8) NOT NULL,
+  PRIMARY KEY (`campaignid`),
+ CONSTRAINT fk_campaign2 FOREIGN KEY (campaign_client) REFERENCES client(clientid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert  into `campaign`(`campaignid`,`campaignname`,`campaigntheme`,`campaigne_estimatedcost`,`campaigne_actualcost`,`campaign_startdate`, `campaign_estimate_end_date`,`campaign_actual_end_date`, `campaign_client`) values 
+
+
+
+CREATE TABLE `studio` (
+  `studioid` varchar(8) NOT NULL,
+  `studioname` varchar(30) NOT NULL,
+  `studiolocation` varchar(100) NOT NULL,
+  PRIMARY KEY (`studioid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `studio` (`studioid`, `studioname`, `studiolocation`) values
+
+CREATE TABLE `advert` (
+  `advertid` varchar(8) NOT NULL,
+  `advert_type` varchar(30) NOT NULL,
+  `advert_campaign` varchar(10) NOT NULL,
+  PRIMARY KEY (`advertid`),
+  CONSTRAINT fk_advertstudio FOREIGN KEY (advert_campaign) REFERENCES campaign(campaignid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `advert` (`advertid`, `advert_type`, `advert_campaign`)values
+
+
+ 
+CREATE TABLE `invoice` (
+  `invoiceid` varchar(8) NOT NULL,
+  `issuedate` date NOT NULL,
+  `payment_status` boolean NOT NULL,
+  `totalcost` varchar(10) NOT NULL,
+  `campaign_invoice` varchar(8) NOT NULL,
+  `client_invoice` varchar(8) NOT NULL,
+  PRIMARY KEY (`invoiceid`),
+  CONSTRAINT fk_invoice1 FOREIGN KEY (campaign_invoice) REFERENCES campaign(campaignid),
+ CONSTRAINT fk_invoice2 FOREIGN KEY (client_invoice) REFERENCES client(clientid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `invoice` (`invoiceid`, `issuedate`, `payment_status`, `totalcost`, `campaign_invoice`, `client_invoice`)values
+
+
+
+CREATE TABLE `staff_works_campaign` (
+  `StaffID` varchar(10) NOT NULL,
+  `Campaign_ID` varchar(8) NOT NULL,
+  `SalaryGrade` int NOT NULL,
+  `IsFullTime?` varchar(3) NOT NULL,
+  CONSTRAINT fk_staffcamp1 FOREIGN KEY (StaffID) REFERENCES staff(staffid),
+ CONSTRAINT fk_staffcamp2 FOREIGN KEY (Campaign_ID) REFERENCES campaign(campaignid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into `staff_works_campaign` (`StaffID`, `Campaign_ID`, `SalaryGrade`, `IsFullTime?`)values
+
+

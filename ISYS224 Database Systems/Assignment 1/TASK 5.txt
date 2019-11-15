@@ -1,0 +1,36 @@
+#Task 5
+
+QUESTION 1
+SELECT campaignname as 'campagin_title', campaigntheme
+FROM campaign
+WHERE campaigne_actualcost < (select avg(campaigne_estimatedcost) from campaign);
+
+
+QUESTION 2
+SELECT advertid, campaignname as 'campagin_title'
+FROM advert, campaign
+WHERE advert.advert_campaign = campaign.campaignid
+AND campaign.campaign_actual_end_date < campaign.campaign_estimate_end_date;
+
+
+QUESTION 3
+select staff_firstname, staff_lastname 
+from supervisor join staff
+on supervisor.supervisorid = staff.supervisor_id 
+and staff.staff_status = 'Full Time'
+and ismanager = 0;
+
+
+
+QUESTION 4
+select c.campaignname, Sum(w.SalaryGrade > 2) as 'Greater Than 2'
+from campaign c inner join staff_works_campaign w
+where c.campaignid = w.Campaign_ID
+Group By c.campaignname Having count(*) >= 2;
+
+
+QUESTION 5
+SELECT STAFFID, STAFFFIRSTNAME, STAFFLASTNAME
+FROM STAFFWORKSCAMPAIGN C INNER JOIN STAFF S
+WHERE STAFFWORKCAMPAIGN.STAFFID = STAFF.STAFFID,
+AND STAFFID != STAFFWORKSCAMPAIGN;

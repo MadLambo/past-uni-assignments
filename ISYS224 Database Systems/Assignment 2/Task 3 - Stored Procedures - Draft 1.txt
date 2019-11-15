@@ -1,0 +1,45 @@
+
+INITIAL DRAFT_______________________________________________________________________________________________________
+DELIMITER //
+CREATE PROCEDURE sp_finish_date
+ (IN campaign_campaigntitle VARCHAR (30))
+ BEGIN
+	DECLARE given_date date;
+	DECLARE staff_id VARCHAR(5)
+	DECLARE t_cost INT 
+	DECLARE rate_on_date CRUSOR FOR  #DECLARING THE CRUSOR 
+		SELECT HOURLYRATE
+		FROM STAFFONGRADE, SALARYONGRADE; 
+		WHERE SALARY.GRADE = SALARYONGRADE.GRADE
+		AND WORKSON.STAFFNO = staff_id
+		AND given_date >= campaign.CAMPAIGNSTARTDATE
+		AND (campaign.campaign.CAMPAIGNFINISHDATE IS NULL OR given_date <= campaign.campaign.CAMPAIGNFINISHDATE);
+	
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET rate_on_date = 1;	
+
+_______________________________________________________________________________________________________
+	OPEN CRUSOR rate_on_date
+	REPEAT
+		FETCH rate_on_date INTO t_cost 
+		UPDATE campaign
+		SET t_cost = 0
+		WHERE t_cost = t_cost * rate_on_date (STAFFNO, WORKINGDATE)
+	UNITL
+	END REPEAT;
+	CLOSE 
+END//
+DELIMITER ;
+		
+
+		  
+_______________________________________________________________________________________________________
+DRAFT 2 
+
+Remarks: 
+- Need to create two functions 
+
+	
+
+
+
+
