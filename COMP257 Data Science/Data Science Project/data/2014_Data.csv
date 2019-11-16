@@ -1,0 +1,23 @@
+Driver Name ,Salary ,Team ,Driver Status ,Age,Number of World Championships ,Number of Pole Positions ,Number of Race Wins ,Number of Podiums ,Number of DNF ,Number of DSQ,Number of DNS,WD,Average Grid Position,Average Finish Position ,Lead Lap Finish,Points ,Number of Fastest Laps,Rookie Status ,Pay Driver? 
+Marcus Ericsson,165000,Caterham ,0,23,0,0,0,0,5,0,0,0,13.9,13.1,5,9,0,1,1
+Kamui Kobayashi,165000,Caterham ,1,27,0,0,0,0,5,0,1,0,18.7,17.2,1,0,0,0,0
+Fernando Alonso,24160000,Ferrari ,0,32,0,0,0,2,2,0,0,0,6.5,7.1,17,161,0,0,0
+Kimi Räikkönen,24160000,Ferrari ,1,34,0,0,0,0,1,0,0,0,9.4,9.8,18,55,1,0,0
+Sergio Pérez,3290000,Force India ,0,24,0,0,0,1,3,0,1,0,11.9,10.6,9,59,1,0,1
+Nico Hülkenberg,4400000,Force India ,1,26,0,0,0,0,2,0,0,0,10.9,8.8,15,96,0,0,0
+Romain Grosjean,3290000,Lotus ,0,28,0,0,0,0,6,0,0,0,14.9,14.7,2,8,0,0,0
+Pastor Maldonado,3290000,Lotus ,1,29,0,0,0,0,5,0,1,0,17.8,15.2,13,2,0,0,1
+Max Chilton,220000,Marussia ,1,23,0,0,0,0,4,0,1,0,19.5,17.1,1,0,0,0,0
+ Jules Bianchi,550000,Marussia ,0,24,0,0,0,0,2,0,0,0,19.5,17.1,1,2,0,0,0
+Kevin Magnussen,1100000,McLaren ,1,31,0,0,0,1,1,0,0,0,8.8,9.8,12,55,0,1,0
+Jenson Button,17570000,McLaren ,0,34,1,0,0,1,1,0,0,0,8.5,8.1,13,126,0,0,0
+Lewis Hamilton,21960000,Mercedes ,0,29,1,7,11,16,3,0,0,0,4.2,4.1,16,384,7,0,0
+Nico Rosberg,13180000,Mercedes ,1,29,0,11,5,15,2,0,0,0,1.7,4.3,16,317,5,0,0
+Sebastian Vettel,24160000,Red Bull ,0,26,4,0,0,4,3,0,0,0,7.8,7.4,16,167,2,0,0
+Daniel Ricciardo,823497,Red Bull ,1,24,0,0,3,8,1,1,0,0,6.3,6.1,17,238,1,0,0
+Esteban Gutiérrez,440000,Sauber,1,22,0,0,0,0,6,0,0,0,15.8,16.1,1,0,0,0,1
+Adrian Sutii,2200000,Sauber,0,31,0,0,0,0,7,0,0,0,14.5,16.4,2,0,0,0,0
+Jean-Éric Vergne,823497,Toro Rosso,0,24,0,0,0,0,5,0,0,0,11.7,12.9,10,22,0,0,0
+Daniil Kvyat,274500,Toro Rosso,1,20,0,0,0,0,5,0,0,0,11.2,13.6,6,8,0,1,0
+Felipe Massa,4400000,Williams ,0,33,0,1,0,3,3,0,0,0,7.5,9.5,12,134,1,0,0
+Valtteri Bottas,1100000,Williams ,1,24,0,0,0,6,1,0,0,0,6.2,6.1,17,186,1,0,0
