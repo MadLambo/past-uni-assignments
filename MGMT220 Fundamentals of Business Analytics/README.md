@@ -7,6 +7,6 @@ Growing quantities of data collected by business, government, the internet and s
 ### Assignments 
 - Assignment 1 Spreadsheet Functions: Result: 90.00%	
 - Assignment 2 Data Visualisation: Result: 90.00%	
-- Assignment 3 Model Sensitivity Analysis: Result: TBD
-- Assignment 4 Interactive Model: Result: TBD
+- Assignment 3 Model Sensitivity Analysis: Result: 93.33%
+- Assignment 4 Interactive Model: Result: 86.67%
 
