@@ -18,4 +18,4 @@ Hello and welcome to my repository. My name is Justin Lam and I am currently ent
 - STAT270: Applied Statistics
 
 
-##### All Rights Reserved © Justin Lam 2019
+##### All Rights Reserved © Justin Lam 2020
