@@ -1,6 +1,0 @@
-Extract a file of related Twitter posts and use the Gephi network graphing software program to create two different network graphs indicating popularity, relative power, or other useful measures.
-
-(A minimum of 25 nodes are expected):
-
-1. Report on the process, explain why you removed some observations and why you chose particular centrality measures
-2. Interpret your network based only on the information in the Social Network analysis.
